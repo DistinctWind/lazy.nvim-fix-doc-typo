@@ -28,6 +28,9 @@ jobs:
           nvim --headless -u tests/init.lua -c "PlenaryBustedDirectory tests/ {minimal_init = 'tests/init.lua', sequential = true}"
   docs:
     runs-on: ubuntu-latest
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the changed files back to the repository.
+      contents: write
     needs: tests
     if: ${{ github.ref == 'refs/heads/main' }}
     steps:
